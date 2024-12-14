@@ -4,7 +4,6 @@ import com.demo.jewelry_store.controllers.UserController;
 import com.demo.jewelry_store.entities.User;
 import com.demo.jewelry_store.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.SQLException;
@@ -30,7 +29,7 @@ public class DefaultUserController implements UserController {
 
     @Override
     @GetMapping("search")
-    public Set<User> findUserByKeyword(@RequestParam String name) throws SQLException {
+    public Set<User> findUserByName(@RequestParam String name) throws SQLException {
         return userService.findUser(name);
     }
 
@@ -47,6 +46,7 @@ public class DefaultUserController implements UserController {
     }
 
     @Override
+    @GetMapping
     public Set<User> getAllUser() throws SQLException {
         return userService.getAll();
     }

@@ -27,15 +27,18 @@ public class DefaultUserRepository implements UserRepository {
         return postgreSQLJDBC.createTable();
     }
 
-
     @Override
     public User saveUser(User user) throws SQLException {
 
-        var sql = "INSERT INTO public.users (name, email, password, role) VALUES ('"
+        var sql = "INSERT INTO public.users (name, email, password, phone, role) VALUES ('"
                 + user.getName() + "','"
                 + user.getEmail() + "','"
                 + user.getPassword() + "','"
+                + user.getPhone() + "','"
                 + user.getRole() + "');";
+
+        var sql2 = "SELECT * FROM users WHERE email='" + user.getEmail() + "';";
+
 
         Connection connection = null;
         Statement stm = null;
@@ -46,7 +49,7 @@ public class DefaultUserRepository implements UserRepository {
             stm = connection.createStatement();
             int updated = stm.executeUpdate(sql);
             if (updated == 1)
-                return user;
+                return DefaultUserResultResponse.resultSetToObject(stm.executeQuery(sql2));
         }
         catch (Exception e) {
             e.getMessage();

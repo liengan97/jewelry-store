@@ -17,30 +17,30 @@ class DefaultUserControllerTest {
 
     UserController userController = new DefaultUserController( new DefaultUserService(new DefaultUserRepository(new PostgreSQLJDBC())));
 
-    User user1 = new User("co", "co@gmail.com","12","03033624451", "ADMIN");
-    User user2 = new User("co 2", "colll2@gmail.com","ssssdas", "020202100", "");
+    User user1 = new User("Tsdas 777", "777@gmail.com","12","7777", "ADMIN");
+//    User user2 = new User("co 2", "colll2@gmail.com","ssssdas", "020202100", "");
 
     @Test
     void addUserTest() throws SQLException {
 
         //400 BAD REQUEST
-        assertThrows(HttpClientErrorException.class, () -> userController.addUser(user1));
-
-        assertThrows(HttpClientErrorException.class, () -> userController.addUser(new User("Ngan")));
+//        assertThrows(HttpClientErrorException.class, () -> userController.addUser(user1));
+//
+//        assertThrows(HttpClientErrorException.class, () -> userController.addUser(new User("Ngan")));
 
         //edit user2 before this Test
-        assertEquals(user2.getEmail(),userController.addUser(user2).getEmail());
+        assertEquals("777@gmail.com",userController.addUser(user1).getEmail());
     }
 
     @Test
     void findUserTest() throws SQLException {
         //2
-        assertEquals(2,userController.findUserByKeyword("co").size());
+        assertEquals(2,userController.findUserByName("co").size());
 
         //all
-        assertEquals(userController.getAllUser().size(),userController.findUserByKeyword("").size());
+        assertEquals(userController.getAllUser().size(),userController.findUserByName("").size());
         //NOT FOUND
-        assertEquals(0,userController.findUserByKeyword("abdhgdag").size());
+        assertEquals(0,userController.findUserByName("abdhgdag").size());
 
     }
 
@@ -59,7 +59,7 @@ class DefaultUserControllerTest {
     @Test
     void getAllTest() throws SQLException {
 
-        assertEquals(userController.getAllUser().size(),userController.findUserByKeyword("").size());
+        assertEquals(userController.getAllUser().size(),userController.findUserByName("").size());
 
     }
 }

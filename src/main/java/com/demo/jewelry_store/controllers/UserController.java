@@ -9,7 +9,7 @@ import java.util.UUID;
 
 public interface UserController {
     User addUser(@RequestBody User user) throws SQLException;
-    Set<User> findUserByKeyword(String keyword) throws SQLException;
+    Set<User> findUserByName(String keyword) throws SQLException;
     boolean deleteUser(UUID id) throws SQLException;
     User getUser(UUID id) throws SQLException;
     Set<User> getAllUser() throws SQLException;

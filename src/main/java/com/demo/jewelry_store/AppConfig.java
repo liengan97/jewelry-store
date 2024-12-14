@@ -26,9 +26,4 @@ public class AppConfig {
     UserService userService() {
         return new DefaultUserService(userRepository());
     }
-
-    @Bean
-    UserController userController() {
-        return new DefaultUserController(userService());
-    }
 }

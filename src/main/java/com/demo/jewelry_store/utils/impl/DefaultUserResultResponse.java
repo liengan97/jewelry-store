@@ -38,6 +38,7 @@ public class DefaultUserResultResponse {
             user.setName(resultSet.getString("name"));
             user.setPassword(resultSet.getString("password"));
             user.setEmail(resultSet.getString("email"));
+            user.setPhone(resultSet.getString("phone"));
             user.setRole(resultSet.getString("role"));
         }
 
