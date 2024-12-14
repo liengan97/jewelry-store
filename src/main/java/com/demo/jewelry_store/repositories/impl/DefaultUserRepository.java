@@ -20,6 +20,9 @@ public class DefaultUserRepository implements UserRepository {
 
     public DefaultUserRepository(PostgreSQLJDBC postgreSQLJDBC) {
         this.postgreSQLJDBC = postgreSQLJDBC;
+
+        //create table if not exist
+        postgreSQLJDBC.createTable();
     }
 
     @Override

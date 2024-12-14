@@ -14,7 +14,7 @@ public class PostgreSQLJDBC {
 
     public PostgreSQLJDBC () {
         try {
-            // Connect to the PostgreSQL database
+            // Connect to the PostgresSQL database
             connection = DriverManager.getConnection(url, user, password);
 
             // Check if connection was successful
@@ -53,8 +53,8 @@ public class PostgreSQLJDBC {
 
         try (var stmt = connection.createStatement())
         {
-            stmt.executeUpdate(sql);
-            return true;
+
+            return stmt.executeUpdate(sql) != 0;
         } catch (SQLException e) {
             System.err.println(e.getMessage());
         }

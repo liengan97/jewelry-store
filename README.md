@@ -1,3 +1,7 @@
+# Create Table First
+
+
+
 # User Service API endpoint
 ## Register
 POST <code>/users<code>
